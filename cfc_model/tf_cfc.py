@@ -135,6 +135,13 @@ class CfcCell(tf.keras.layers.Layer):
                 new_hidden = ff1 * (1.0 - t_interp) + t_interp * ff2
 
         return new_hidden, [new_hidden]
+    def get_config(self):
+        config = super().get_config()
+        config.update({
+            "units": self.units,
+            "hparams": self.hparams,
+        })
+        return config
 
 
 class MixedCfcCell(tf.keras.layers.Layer):
